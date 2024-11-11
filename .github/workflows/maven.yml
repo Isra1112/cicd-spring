@@ -29,7 +29,7 @@ jobs:
       #Set up Maven cache
       - name: Cache Maven packages
         #This action allows caching dependencies and build outputs to improve workflow execution time.
-        uses: actions/cache@v1
+        uses: actions/cache@v4
         with:
           path: ~/.m2
           key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
@@ -46,7 +46,7 @@ jobs:
     #Job's steps
     steps:
       #Check-out your repository under $GITHUB_WORKSPACE, so your workflow can access it
-      - uses: actions/checkout@v1
+      - uses: actions/checkout@v4
       #Set up JDK 11
       - name: Set up JDK
         uses: actions/setup-java@v1
@@ -55,7 +55,7 @@ jobs:
       #Set up SonarCloud cache
       - name: Cache SonarCloud packages
         #This action allows caching dependencies and build outputs to improve workflow execution time.
-        uses: actions/cache@v1
+        uses: actions/cache@v4
         with:
           path: ~/.sonar/cache
           key: ${{ runner.os }}-sonar
@@ -63,7 +63,7 @@ jobs:
       #Set up Maven cache
       - name: Cache Maven packages
         #This action allows caching dependencies and build outputs to improve workflow execution time.
-        uses: actions/cache@v1
+        uses: actions/cache@v4
         with:
           path: ~/.m2
           key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
@@ -72,7 +72,7 @@ jobs:
       - name: Analyze with SonarCloud
         run: mvn -B verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=Isra1112_cicd-spring
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          #GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
   build:
     #Depends on sonar's job
@@ -82,7 +82,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       #Check-out your repository under $GITHUB_WORKSPACE, so your workflow can access it
-      - uses: actions/checkout@v1
+      - uses: actions/checkout@v4
       #Set up JDK 11
       - name: Set up JDK
         uses: actions/setup-java@v1
@@ -91,7 +91,7 @@ jobs:
       #Set up Maven cache
       - name: Cache Maven packages
         #This action allows caching dependencies and build outputs to improve workflow execution time.
-        uses: actions/cache@v1
+        uses: actions/cache@v4
         with:
           path: ~/.m2
           key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
