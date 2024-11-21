@@ -1,4 +1,4 @@
-package com.example.cicd.Contoller;
+package com.example.cicd.Controller;
 
 
 import org.springframework.web.bind.annotation.GetMapping;
