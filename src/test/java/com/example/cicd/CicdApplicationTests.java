@@ -1,6 +1,6 @@
 package com.example.cicd;
 
-import com.example.cicd.Controller.TestController;
+import com.example.cicd.controller.TestController;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
