@@ -120,7 +120,7 @@ jobs:
           token: ${{ secrets.DO_PAT }}
       - name: Build Docker Image
         run: |
-          docker build -t registry.digitalocean.com/cicd-spring-boot/cicd-spring-boot:${{ github.sha }} .
+          docker build -t registry.digitalocean.com/cicd-spring-boot:${{ github.sha }} .
       - name: Push Docker Image
         run: |
-          docker push registry.digitalocean.com/cicd-spring-boot/cicd-spring-boot:${{ github.sha }}
+          docker push registry.digitalocean.com/cicd-spring-boot:${{ github.sha }}
