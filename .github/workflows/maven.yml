@@ -118,8 +118,13 @@ jobs:
         uses: digitalocean/action-doctl@v2
         with:
           token: ${{ secrets.DO_PAT }}
+      - name: List files in build context
+        run: |
+          ls -R
+          ls -R target
       - name: Build Docker Image
         run: |
+          
           docker build -t registry.digitalocean.com/cicd-spring-boot:${{ github.sha }} .
       - name: Push Docker Image
         run: |
