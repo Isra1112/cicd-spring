@@ -75,7 +75,7 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: application-jar
-          path: target/data-0.0.1-SNAPSHOT.jar
+          path: target/CICD-0.0.1-SNAPSHOT.jar
   docker-build-push:
     needs: build
     name: Build and Push Docker Image
