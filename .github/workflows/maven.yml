@@ -92,10 +92,10 @@ jobs:
         uses: actions/download-artifact@v3
         with:
           name: application-jar
-      - name: Move Downloaded Artifact to Target Directory
-        run: |
-          mkdir -p target
-          mv application-jar target/
+#      - name: Move Downloaded Artifact to Target Directory
+#        run: |
+#          mkdir -p target
+#          mv application-jar target/
       - name: Log in to DigitalOcean Container Registry
         uses: digitalocean/action-doctl@v2
         with:
