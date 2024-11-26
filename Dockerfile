@@ -2,7 +2,7 @@ FROM eclipse-temurin:17-jdk-alpine
 
 WORKDIR /app
 
-COPY target/*.jar app.jar
+COPY /home/runner/work/cicd-spring/cicd-spring/*.jar app.jar
 
 EXPOSE 8080
 
