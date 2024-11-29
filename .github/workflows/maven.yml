@@ -108,10 +108,8 @@ jobs:
       - name: Build docker image
         run: docker build . -t $(echo $REGISTRY)/$(echo $IMAGE_NAME):$(echo $GITHUB_SHA | head -c7)
 
-
-
-      - name: Tag container image
-        run: docker tag $(echo $IMAGE_NAME):$(echo $GITHUB_SHA | head -c7) $(echo $REGISTRY)/$(echo $IMAGE_NAME)
+      - name: List Docker Images
+        run: docker images
 
       - name: Install doctl
         uses: digitalocean/action-doctl@v2
