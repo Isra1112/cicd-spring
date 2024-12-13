@@ -7,11 +7,11 @@ import com.example.cicd.repository.ChatMessageRepository;
 import com.example.cicd.repository.ChatRoomRepository;
 import com.example.cicd.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
+import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -23,9 +23,14 @@ public class ChatMessageService {
     private final CacheChatMessageService cacheChatMessageService;
     private final UserRepository userRepository;
     private final ChatRoomRepository chatRoomRepository;
+    private final ModelMapper modelMapper;
 
     public ChatMessage saveChatMessage(ChatMessage chatMessage) {
+        System.out.println(chatMessage.toString());
         return chatMessageRepository.save(chatMessage);
+//        ChatMessage chatMessage = modelMapper.map(chatMessageDTO, ChatMessage.class);
+//        System.out.println(chatMessage.toString());
+//        return null;
     }
 
     public List<ChatMessage> getCacheAllChatMessages() {
@@ -52,11 +57,11 @@ public class ChatMessageService {
         }
 
         LocalDate today = LocalDate.now();
-        List<ChatRoom> roomList = chatRoomRepository.findByInitiatorAndEndDateAfter(user.get(), LocalDate.now());
-        if (!roomList.isEmpty()) {
-            System.out.println("There is room active");
-            return null;
-        }
+//        List<ChatRoom> roomList = chatRoomRepository.findByInitiatorAndEndDateAfter(user.get(), LocalDate.now());
+//        if (!roomList.isEmpty()) {
+//            System.out.println("There is room active");
+//            return null;
+//        }
 
         Long id = 2L;
         Optional<User> admin = userRepository.findById(id);
@@ -67,11 +72,11 @@ public class ChatMessageService {
 
         ChatRoom chatRoom = new ChatRoom();
         chatRoom.setTitle("Live Chat");
-        chatRoom.setInitiator(user.get());
+//        chatRoom.setInitiator(user.get());
         chatRoom.setStartDate(today);
         chatRoom.setEndDate(today.plusDays(1));
         chatRoom.setIsDeleted(false);
-        chatRoom.setParticipants(participants);
+//        chatRoom.setParticipants(participants);
         chatRoomRepository.save(chatRoom);
 
         return chatRoomRepository.save(chatRoom);

@@ -36,9 +36,9 @@ public class ChatRoom {
     @JsonManagedReference
     private List<ChatMessage> chatMessages = new ArrayList<>();
 
-    @ManyToOne
-    private User initiator;
-
-    @ManyToMany
-    private List<User> participants;
+//    @ManyToOne
+//    private User initiator;
+//
+//    @ManyToMany
+//    private List<User> participants;
 }

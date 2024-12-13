@@ -25,12 +25,12 @@ public class ChatMessage {
 
     @ManyToOne
     @JsonBackReference
-    @JoinColumn(name = "chat_room_id", referencedColumnName = "id")
+//    @JoinColumn(name = "chat_room_id", referencedColumnName = "id")
 //    @JsonIgnore
     private ChatRoom chatRoom;
 
     @ManyToOne
-    @JsonIgnore
+//    @JsonIgnore
 //    @JsonBackReference
     private User sender;
 }

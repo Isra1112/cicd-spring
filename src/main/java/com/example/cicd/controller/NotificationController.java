@@ -3,13 +3,16 @@ package com.example.cicd.controller;
 import com.example.cicd.domain.ChatMessage;
 import com.example.cicd.domain.ChatRoom;
 import com.example.cicd.domain.User;
+import com.example.cicd.domain.dto.ChatMessageDTO;
 import com.example.cicd.service.ChatMessageService;
 import com.example.cicd.service.ChatRoomService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.messaging.handler.annotation.DestinationVariable;
 import org.springframework.messaging.handler.annotation.MessageMapping;
+import org.springframework.messaging.handler.annotation.Payload;
 import org.springframework.messaging.handler.annotation.SendTo;
+import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
@@ -20,6 +23,8 @@ import java.util.List;
 public class NotificationController {
     private final ChatMessageService chatMessageService;
     private final ChatRoomService chatRoomService;
+    private final SimpMessagingTemplate messagingTemplate;
+
 
     @MessageMapping("/chat/init/livechat")
     @SendTo("/topic/livechat/notification")
@@ -29,11 +34,13 @@ public class NotificationController {
     }
 
     @MessageMapping("/chat/roomchat/send/{chatRoomId}")
-    @SendTo("/chat/roomchat/{chatRoomId}")
-    public ChatMessage liveChatRoom(@DestinationVariable String chatRoomId,ChatMessage request) {
+//    @SendTo("/chat/roomchat/{chatRoomId}")
+    public void liveChatRoom(@DestinationVariable String chatRoomId,@Payload ChatMessage request) {
         System.out.println("liveChatRoom");
+        System.out.println("chatRoomId : "+chatRoomId);
 
-        return chatMessageService.saveChatMessage(request);
+        ChatMessage response = chatMessageService.saveChatMessage(request);
+        messagingTemplate.convertAndSend("/topic/chat/roomchat/" + chatRoomId, response);
     }
 
     @MessageMapping("/chat/read/{chatMessageId}")

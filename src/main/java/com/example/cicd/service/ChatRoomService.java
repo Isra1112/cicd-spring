@@ -13,6 +13,9 @@ import java.util.List;
 @RequiredArgsConstructor
 @Slf4j
 public class ChatRoomService {
+
+
+
     private final ChatRoomRepository chatRoomRepository;
 
     public List<ChatRoom> getAll() {
@@ -20,7 +23,8 @@ public class ChatRoomService {
     }
 
     public List<ChatRoom> getAllChatRoomsActiveByParticipant(Long participantId) {
-        return chatRoomRepository.findByParticipantId(participantId);
+//        return chatRoomRepository.findByParticipantId(participantId);
+        return null;
     }
 
     public List<ChatRoom> findAllTodelete() {

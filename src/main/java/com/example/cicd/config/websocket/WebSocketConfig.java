@@ -1,4 +1,4 @@
-package com.example.cicd.config;
+package com.example.cicd.config.websocket;
 
 import org.springframework.messaging.converter.MessageConverter;
 import org.springframework.context.annotation.Configuration;

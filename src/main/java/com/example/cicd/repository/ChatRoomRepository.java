@@ -20,9 +20,9 @@ public interface ChatRoomRepository extends JpaRepository<ChatRoom, Long> {
     @Query("SELECT r FROM ChatRoom r LEFT JOIN FETCH r.chatMessages")
     List<ChatRoom> findAllWithChatMessages();
 
-    List<ChatRoom> findByInitiatorAndEndDateAfter(User initiator, LocalDate endDate);
+//    List<ChatRoom> findByInitiatorAndEndDateAfter(User initiator, LocalDate endDate);
 
-    @Query("SELECT c FROM ChatRoom c JOIN c.participants p WHERE p.id = :userId")
-    List<ChatRoom> findByParticipantId(@Param("userId") Long userId);
+//    @Query("SELECT c FROM ChatRoom c JOIN c.participants p WHERE p.id = :userId")
+//    List<ChatRoom> findByParticipantId(@Param("userId") Long userId);
 
 }
